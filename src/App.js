@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import StockDetail from './components/StockDetail';
 
@@ -8,10 +8,10 @@ function App() {
     <Router>
       <div className="App">
         <Header />
-        <Switch>
-          <Route path="/:symbol" component={StockDetail} />
-          <Route path="/" exact component={() => <h1>Welcome to Paper Trading</h1>} />
-        </Switch>
+        <Routes>
+          <Route path="/:symbol" element={<StockDetail />} />
+          <Route path="/" element={<h1>Welcome to Paper Trading</h1>} />
+        </Routes>
       </div>
     </Router>
   );
