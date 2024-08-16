@@ -1,11 +1,19 @@
 import React from 'react';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
+import Header from './components/Header';
+import StockDetail from './components/StockDetail';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Welcome to Paper Trading App</h1>
-      <p>If you see this, the React app is rendering correctly.</p>
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route path="/:symbol" element={<StockDetail />} />
+          <Route path="/" element={<h1>Welcome to Paper Trading</h1>} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

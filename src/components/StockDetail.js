@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
-function StockDetail({ match }) {
+function StockDetail() {
   const [stockData, setStockData] = useState(null);
   const [chartData, setChartData] = useState([]);
+  const { symbol } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_ALPACA_API_ENDPOINT}/stocks/${match.params.symbol}/bars?timeframe=1D`, {
+        const response = await axios.get(`${process.env.REACT_APP_ALPACA_API_ENDPOINT}/stocks/${symbol}/bars?timeframe=1D`, {
           headers: {
             'APCA-API-KEY-ID': process.env.REACT_APP_ALPACA_API_KEY,
             'APCA-API-SECRET-KEY': process.env.REACT_APP_ALPACA_API_SECRET
           }
         });
         setStockData({
-          symbol: match.params.symbol,
+          symbol: symbol,
           price: response.data[response.data.length - 1].c,
           change: response.data[response.data.length - 1].c - response.data[0].o,
           changePercent: ((response.data[response.data.length - 1].c - response.data[0].o) / response.data[0].o) * 100
@@ -30,7 +32,7 @@ function StockDetail({ match }) {
       }
     };
     fetchData();
-  }, [match.params.symbol]);
+  }, [symbol]);
 
   if (!stockData) return <div>Loading...</div>;
 
