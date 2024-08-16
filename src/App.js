@@ -1,16 +1,28 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Header from './components/Header';
-import StockDetail from './components/StockDetail';
+import { HashRouter as Router, Route, Routes, Link } from 'react-router-dom';
+
+function Home() {
+  return <h2>Welcome to Paper Trading</h2>;
+}
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Header />
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+          </ul>
+        </nav>
+
         <Routes>
-          <Route path="/:symbol" element={<StockDetail />} />
-          <Route path="/" element={<h1>Welcome to Paper Trading</h1>} />
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<h2>About</h2>} />
         </Routes>
       </div>
     </Router>
