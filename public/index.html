@@ -5,23 +5,21 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Paper Trading App"
-    />
+    <meta name="description" content="Paper Trading App" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>Paper Trading App</title>
   </head>
   <body>
+    <h1>Paper Trading App</h1>
+    <p id="debug">If you see this message, the HTML is loading correctly.</p>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        if (!document.getElementById('root').children.length) {
-          document.body.innerHTML += '<p>App failed to render. Check console for errors.</p>';
-        }
-      });
+      document.getElementById('debug').textContent += ' JavaScript is running.';
+      window.onerror = function(message, source, lineno, colno, error) {
+        document.body.innerHTML += '<p>Error: ' + message + '</p>';
+      };
     </script>
   </body>
 </html>
