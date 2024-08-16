@@ -6,8 +6,11 @@ on:
       - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency: ci-${{ github.ref }}
     steps:
       - uses: actions/checkout@v4
       - name: Setup Node
@@ -23,18 +26,8 @@ jobs:
           REACT_APP_ALPACA_API_SECRET: ${{ secrets.REACT_APP_ALPACA_API_SECRET }}
           REACT_APP_ALPACA_API_ENDPOINT: ${{ secrets.REACT_APP_ALPACA_API_ENDPOINT }}
       - name: Deploy
-        run: |
-          git config --global user.name github-actions
-          git config --global user.email github-actions@github.com
-          git checkout --orphan gh-pages
-          git --work-tree build add --all
-          git --work-tree build commit -m "Deploy to GitHub Pages"
-          git push origin HEAD:gh-pages --force
-        env:
-          GITHUB_TOKEN: ${{ secrets.GHPAGES_TOKEN }}
-      - name: Debug - Check gh-pages branch
-        run: |
-          git fetch origin gh-pages
-          git checkout gh-pages
-          echo "Contents of the root directory on gh-pages branch:"
-          ls -la
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          force_orphan: true
