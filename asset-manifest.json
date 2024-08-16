@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/paper-trading-app/static/css/main.e6c13ad2.css",
+    "main.js": "/paper-trading-app/static/js/main.c8988866.js",
+    "static/js/453.bcf939c8.chunk.js": "/paper-trading-app/static/js/453.bcf939c8.chunk.js",
+    "index.html": "/paper-trading-app/index.html",
+    "main.e6c13ad2.css.map": "/paper-trading-app/static/css/main.e6c13ad2.css.map",
+    "main.c8988866.js.map": "/paper-trading-app/static/js/main.c8988866.js.map",
+    "453.bcf939c8.chunk.js.map": "/paper-trading-app/static/js/453.bcf939c8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.c8988866.js"
+  ]
+}
