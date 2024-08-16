@@ -9,8 +9,8 @@ function App() {
       <div className="App">
         <Header />
         <Routes>
-          <Route path="/:symbol" element={<StockDetail />} />
-          <Route path="/" element={<h1>Welcome to Paper Trading</h1>} />
+          <Route path="/" element={<StockDetail />} />
+          {/* <Route path="/" element={<h1>Welcome to Paper Trading</h1>} /> */}
         </Routes>
       </div>
     </Router>
